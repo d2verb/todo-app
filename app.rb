@@ -11,6 +11,7 @@ class TodoApp < Sinatra::Base
     register Sinatra::Reloader
 
     set :database, adapter: 'sqlite3', database: 'db/todo.db'
+    set :haml, :escape_html => true
 
     set :sessions, true
     set :session_secret, '\x1b\x7fJ\x833\xac~\xe6\xbb\xba\nf'
@@ -56,11 +57,11 @@ class TodoApp < Sinatra::Base
   get '/signup' do
     haml :signup
   end
-  
+
   get '/signin' do
     haml :signin
   end
-  
+
   get '/signout' do
     session.destroy
     redirect '/'
